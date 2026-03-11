@@ -11,7 +11,7 @@ namespace Interface
 
         private void FrmMenu_Load(object sender, EventArgs e)
         {
-            this.lblTitre.Text = "Gestion des visites";
+            this.lblTitre.Text = "Bienvenue sur l'application de gestion des visites";
         }
     }
 }
