@@ -29,187 +29,196 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmVisiteAjout));
+            panel2 = new Panel();
+            lblMotif = new Label();
+            cbxMotif = new ComboBox();
+            lblPraticien = new Label();
+            lblDateHeure = new Label();
+            lblNouveauRdv = new Label();
+            dtpDate = new DateTimePicker();
+            cbxPraticien = new ComboBox();
+            btnAjouter = new Button();
+            panelDroit = new Panel();
             panelGauche = new Panel();
             dgvVisites = new DataGridView();
-            lblListeRdv = new Label();
-            panelDroite = new Panel();
-            btnAjouter = new Button();
-            dtpDate = new DateTimePicker();
-            lblDateHeure = new Label();
-            cbxMotif = new ComboBox();
-            lblMotif = new Label();
-            cbxPraticien = new ComboBox();
-            lblPraticien = new Label();
-            lblNouveauRdv = new Label();
+            label1 = new Label();
+            panel2.SuspendLayout();
+            panelDroit.SuspendLayout();
             panelGauche.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvVisites).BeginInit();
-            panelDroite.SuspendLayout();
             SuspendLayout();
             // 
             // lblTitre
             // 
-            lblTitre.Dock = DockStyle.Top;
-            lblTitre.Size = new Size(1015, 74);
+            lblTitre.Size = new Size(1015, 49);
             // 
-            // panelGauche
+            // panel2
             // 
-            panelGauche.Controls.Add(dgvVisites);
-            panelGauche.Controls.Add(lblListeRdv);
-            panelGauche.Dock = DockStyle.Left;
-            panelGauche.Location = new Point(0, 74);
-            panelGauche.Name = "panelGauche";
-            panelGauche.Padding = new Padding(10);
-            panelGauche.Size = new Size(615, 366);
-            panelGauche.TabIndex = 1;
+            panel2.Controls.Add(btnAjouter);
+            panel2.Controls.Add(cbxPraticien);
+            panel2.Controls.Add(dtpDate);
+            panel2.Controls.Add(lblNouveauRdv);
+            panel2.Controls.Add(lblDateHeure);
+            panel2.Controls.Add(lblPraticien);
+            panel2.Controls.Add(cbxMotif);
+            panel2.Controls.Add(lblMotif);
+            panel2.Location = new Point(32, 28);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(368, 275);
+            panel2.TabIndex = 8;
             // 
-            // dgvVisites
+            // lblMotif
             // 
-            dgvVisites.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvVisites.Dock = DockStyle.Fill;
-            dgvVisites.Location = new Point(10, 35);
-            dgvVisites.Name = "dgvVisites";
-            dgvVisites.RowTemplate.Height = 25;
-            dgvVisites.Size = new Size(595, 321);
-            dgvVisites.TabIndex = 1;
+            lblMotif.AutoSize = true;
+            lblMotif.Location = new Point(24, 121);
+            lblMotif.Name = "lblMotif";
+            lblMotif.Size = new Size(36, 15);
+            lblMotif.TabIndex = 3;
+            lblMotif.Text = "Motif";
             // 
-            // lblListeRdv
+            // cbxMotif
             // 
-            lblListeRdv.AutoSize = false;
-            lblListeRdv.Dock = DockStyle.Top;
-            lblListeRdv.Location = new Point(10, 10);
-            lblListeRdv.Name = "lblListeRdv";
-            lblListeRdv.Size = new Size(595, 25);
-            lblListeRdv.TabIndex = 0;
-            lblListeRdv.Text = "Liste des rendez-vous déjà enregistrés";
+            cbxMotif.FormattingEnabled = true;
+            cbxMotif.Location = new Point(109, 121);
+            cbxMotif.Name = "cbxMotif";
+            cbxMotif.Size = new Size(216, 23);
+            cbxMotif.TabIndex = 4;
             // 
-            // panelDroite
+            // lblPraticien
             // 
-            panelDroite.BorderStyle = BorderStyle.FixedSingle;
-            panelDroite.Controls.Add(btnAjouter);
-            panelDroite.Controls.Add(dtpDate);
-            panelDroite.Controls.Add(lblDateHeure);
-            panelDroite.Controls.Add(cbxMotif);
-            panelDroite.Controls.Add(lblMotif);
-            panelDroite.Controls.Add(cbxPraticien);
-            panelDroite.Controls.Add(lblPraticien);
-            panelDroite.Controls.Add(lblNouveauRdv);
-            panelDroite.Dock = DockStyle.Right;
-            panelDroite.Location = new Point(615, 74);
-            panelDroite.Name = "panelDroite";
-            panelDroite.Padding = new Padding(20);
-            panelDroite.Size = new Size(400, 366);
-            panelDroite.TabIndex = 2;
+            lblPraticien.AutoSize = true;
+            lblPraticien.Location = new Point(24, 66);
+            lblPraticien.Name = "lblPraticien";
+            lblPraticien.Size = new Size(53, 15);
+            lblPraticien.TabIndex = 1;
+            lblPraticien.Text = "Praticien";
+            // 
+            // lblDateHeure
+            // 
+            lblDateHeure.AutoSize = true;
+            lblDateHeure.Location = new Point(26, 184);
+            lblDateHeure.Name = "lblDateHeure";
+            lblDateHeure.Size = new Size(77, 15);
+            lblDateHeure.TabIndex = 5;
+            lblDateHeure.Text = "Date et heure";
+            // 
+            // lblNouveauRdv
+            // 
+            lblNouveauRdv.AutoSize = true;
+            lblNouveauRdv.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            lblNouveauRdv.Location = new Point(24, 15);
+            lblNouveauRdv.Name = "lblNouveauRdv";
+            lblNouveauRdv.Size = new Size(160, 20);
+            lblNouveauRdv.TabIndex = 0;
+            lblNouveauRdv.Text = "Nouveau rendez vous";
+            // 
+            // dtpDate
+            // 
+            dtpDate.CustomFormat = "dd/MM/yyyy HH:mm";
+            dtpDate.Format = DateTimePickerFormat.Custom;
+            dtpDate.Location = new Point(109, 178);
+            dtpDate.Name = "dtpDate";
+            dtpDate.Size = new Size(216, 23);
+            dtpDate.TabIndex = 6;
+            // 
+            // cbxPraticien
+            // 
+            cbxPraticien.FormattingEnabled = true;
+            cbxPraticien.Location = new Point(109, 66);
+            cbxPraticien.Name = "cbxPraticien";
+            cbxPraticien.Size = new Size(216, 23);
+            cbxPraticien.TabIndex = 2;
             // 
             // btnAjouter
             // 
             btnAjouter.BackColor = Color.Red;
             btnAjouter.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnAjouter.ForeColor = Color.White;
-            btnAjouter.Location = new Point(60, 280);
+            btnAjouter.Location = new Point(109, 217);
             btnAjouter.Name = "btnAjouter";
-            btnAjouter.Size = new Size(280, 50);
+            btnAjouter.Size = new Size(216, 37);
             btnAjouter.TabIndex = 7;
             btnAjouter.Text = "Ajouter";
             btnAjouter.UseVisualStyleBackColor = false;
+            btnAjouter.Click += btnAjouter_Click;
             // 
-            // dtpDate
+            // panelDroit
             // 
-            dtpDate.Format = DateTimePickerFormat.Custom;
-            dtpDate.CustomFormat = "dd/MM/yyyy HH:mm";
-            dtpDate.Location = new Point(60, 237);
-            dtpDate.Name = "dtpDate";
-            dtpDate.Size = new Size(280, 23);
-            dtpDate.TabIndex = 6;
+            panelDroit.Controls.Add(panel2);
+            panelDroit.Dock = DockStyle.Right;
+            panelDroit.Location = new Point(585, 73);
+            panelDroit.Name = "panelDroit";
+            panelDroit.Size = new Size(430, 322);
+            panelDroit.TabIndex = 13;
             // 
-            // lblDateHeure
+            // panelGauche
             // 
-            lblDateHeure.AutoSize = true;
-            lblDateHeure.Location = new Point(60, 215);
-            lblDateHeure.Name = "lblDateHeure";
-            lblDateHeure.Size = new Size(101, 15);
-            lblDateHeure.TabIndex = 5;
-            lblDateHeure.Text = "Date et heure";
+            panelGauche.Controls.Add(label1);
+            panelGauche.Controls.Add(dgvVisites);
+            panelGauche.Dock = DockStyle.Fill;
+            panelGauche.Location = new Point(0, 73);
+            panelGauche.Name = "panelGauche";
+            panelGauche.Padding = new Padding(10);
+            panelGauche.Size = new Size(585, 322);
+            panelGauche.TabIndex = 14;
             // 
-            // cbxMotif
+            // dgvVisites
             // 
-            cbxMotif.FormattingEnabled = true;
-            cbxMotif.Location = new Point(60, 180);
-            cbxMotif.Name = "cbxMotif";
-            cbxMotif.Size = new Size(280, 23);
-            cbxMotif.TabIndex = 4;
+            dgvVisites.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvVisites.Dock = DockStyle.Fill;
+            dgvVisites.Location = new Point(10, 10);
+            dgvVisites.Name = "dgvVisites";
+            dgvVisites.Size = new Size(565, 302);
+            dgvVisites.TabIndex = 0;
             // 
-            // lblMotif
+            // label1
             // 
-            lblMotif.AutoSize = true;
-            lblMotif.Location = new Point(60, 160);
-            lblMotif.Name = "lblMotif";
-            lblMotif.Size = new Size(39, 15);
-            lblMotif.TabIndex = 3;
-            lblMotif.Text = "Motif";
-            // 
-            // cbxPraticien
-            // 
-            cbxPraticien.FormattingEnabled = true;
-            cbxPraticien.Location = new Point(60, 125);
-            cbxPraticien.Name = "cbxPraticien";
-            cbxPraticien.Size = new Size(280, 23);
-            cbxPraticien.TabIndex = 2;
-            // 
-            // lblPraticien
-            // 
-            lblPraticien.AutoSize = true;
-            lblPraticien.Location = new Point(60, 105);
-            lblPraticien.Name = "lblPraticien";
-            lblPraticien.Size = new Size(64, 15);
-            lblPraticien.TabIndex = 1;
-            lblPraticien.Text = "Praticien";
-            // 
-            // lblNouveauRdv
-            // 
-            lblNouveauRdv.AutoSize = true;
-            lblNouveauRdv.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            lblNouveauRdv.Location = new Point(60, 20);
-            lblNouveauRdv.Name = "lblNouveauRdv";
-            lblNouveauRdv.Size = new Size(156, 20);
-            lblNouveauRdv.TabIndex = 0;
-            lblNouveauRdv.Text = "Nouveau rendez vous";
+            label1.Dock = DockStyle.Top;
+            label1.Location = new Point(10, 10);
+            label1.Name = "label1";
+            label1.Size = new Size(565, 15);
+            label1.TabIndex = 1;
+            label1.Text = "Liste des rendez-vous déjà enregistrés";
+            
             // 
             // FrmVisiteAjout
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1015, 440);
-            Controls.Add(panelDroite);
             Controls.Add(panelGauche);
+            Controls.Add(panelDroit);
             Icon = (Icon)resources.GetObject("$this.Icon");
             KeyPreview = true;
             Location = new Point(0, 0);
             Name = "FrmVisiteAjout";
             Text = "Ajouter une visite";
             Load += FrmVisiteAjout_Load;
-            Controls.SetChildIndex(panelGauche, 0);
-            Controls.SetChildIndex(panelDroite, 0);
             Controls.SetChildIndex(lblTitre, 0);
+            Controls.SetChildIndex(panelDroit, 0);
+            Controls.SetChildIndex(panelGauche, 0);
+            panel2.ResumeLayout(false);
+            panel2.PerformLayout();
+            panelDroit.ResumeLayout(false);
             panelGauche.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvVisites).EndInit();
-            panelDroite.ResumeLayout(false);
-            panelDroite.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-        private System.Windows.Forms.Panel panelGauche;
-        private System.Windows.Forms.Label lblListeRdv;
-        private System.Windows.Forms.DataGridView dgvVisites;
-        private System.Windows.Forms.Panel panelDroite;
-        private System.Windows.Forms.Label lblNouveauRdv;
-        private System.Windows.Forms.Label lblPraticien;
-        private System.Windows.Forms.ComboBox cbxPraticien;
-        private System.Windows.Forms.ComboBox cbxMotif;
-        private System.Windows.Forms.Label lblMotif;
-        private System.Windows.Forms.DateTimePicker dtpDate;
-        private System.Windows.Forms.Label lblDateHeure;
-        private System.Windows.Forms.Button btnAjouter;
+        private Panel panel2;
+        private Button btnAjouter;
+        private ComboBox cbxPraticien;
+        private DateTimePicker dtpDate;
+        private Label lblNouveauRdv;
+        private Label lblDateHeure;
+        private Label lblPraticien;
+        private ComboBox cbxMotif;
+        private Label lblMotif;
+        private Panel panelDroit;
+        private Panel panelGauche;
+        private Label label1;
+        private DataGridView dgvVisites;
     }
 }
