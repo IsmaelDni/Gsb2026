@@ -285,7 +285,8 @@ namespace Interface
             {
                 // récupérer les données saisies
 
-                Motif m = (Motif)cbxMotif.SelectedItem!; if (m != null) {
+                Motif m = (Motif)cbxMotif.SelectedItem!; 
+                if (m == null) {
                     MessageBox.Show("Veuillez sélectionner un motif.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }

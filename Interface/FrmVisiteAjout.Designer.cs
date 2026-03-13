@@ -30,18 +30,18 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmVisiteAjout));
             panel2 = new Panel();
-            lblMotif = new Label();
-            cbxMotif = new ComboBox();
-            lblPraticien = new Label();
-            lblDateHeure = new Label();
-            lblNouveauRdv = new Label();
-            dtpDate = new DateTimePicker();
-            cbxPraticien = new ComboBox();
             btnAjouter = new Button();
+            cbxPraticien = new ComboBox();
+            dtpDate = new DateTimePicker();
+            lblNouveauRdv = new Label();
+            lblDateHeure = new Label();
+            lblPraticien = new Label();
+            cbxMotif = new ComboBox();
+            lblMotif = new Label();
             panelDroit = new Panel();
             panelGauche = new Panel();
-            dgvVisites = new DataGridView();
             label1 = new Label();
+            dgvVisites = new DataGridView();
             panel2.SuspendLayout();
             panelDroit.SuspendLayout();
             panelGauche.SuspendLayout();
@@ -50,7 +50,7 @@
             // 
             // lblTitre
             // 
-            lblTitre.Size = new Size(1015, 49);
+            lblTitre.Size = new Size(1015, 59);
             // 
             // panel2
             // 
@@ -67,68 +67,6 @@
             panel2.Size = new Size(368, 275);
             panel2.TabIndex = 8;
             // 
-            // lblMotif
-            // 
-            lblMotif.AutoSize = true;
-            lblMotif.Location = new Point(24, 121);
-            lblMotif.Name = "lblMotif";
-            lblMotif.Size = new Size(36, 15);
-            lblMotif.TabIndex = 3;
-            lblMotif.Text = "Motif";
-            // 
-            // cbxMotif
-            // 
-            cbxMotif.FormattingEnabled = true;
-            cbxMotif.Location = new Point(109, 121);
-            cbxMotif.Name = "cbxMotif";
-            cbxMotif.Size = new Size(216, 23);
-            cbxMotif.TabIndex = 4;
-            // 
-            // lblPraticien
-            // 
-            lblPraticien.AutoSize = true;
-            lblPraticien.Location = new Point(24, 66);
-            lblPraticien.Name = "lblPraticien";
-            lblPraticien.Size = new Size(53, 15);
-            lblPraticien.TabIndex = 1;
-            lblPraticien.Text = "Praticien";
-            // 
-            // lblDateHeure
-            // 
-            lblDateHeure.AutoSize = true;
-            lblDateHeure.Location = new Point(26, 184);
-            lblDateHeure.Name = "lblDateHeure";
-            lblDateHeure.Size = new Size(77, 15);
-            lblDateHeure.TabIndex = 5;
-            lblDateHeure.Text = "Date et heure";
-            // 
-            // lblNouveauRdv
-            // 
-            lblNouveauRdv.AutoSize = true;
-            lblNouveauRdv.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            lblNouveauRdv.Location = new Point(24, 15);
-            lblNouveauRdv.Name = "lblNouveauRdv";
-            lblNouveauRdv.Size = new Size(160, 20);
-            lblNouveauRdv.TabIndex = 0;
-            lblNouveauRdv.Text = "Nouveau rendez vous";
-            // 
-            // dtpDate
-            // 
-            dtpDate.CustomFormat = "dd/MM/yyyy HH:mm";
-            dtpDate.Format = DateTimePickerFormat.Custom;
-            dtpDate.Location = new Point(109, 178);
-            dtpDate.Name = "dtpDate";
-            dtpDate.Size = new Size(216, 23);
-            dtpDate.TabIndex = 6;
-            // 
-            // cbxPraticien
-            // 
-            cbxPraticien.FormattingEnabled = true;
-            cbxPraticien.Location = new Point(109, 66);
-            cbxPraticien.Name = "cbxPraticien";
-            cbxPraticien.Size = new Size(216, 23);
-            cbxPraticien.TabIndex = 2;
-            // 
             // btnAjouter
             // 
             btnAjouter.BackColor = Color.Red;
@@ -142,13 +80,75 @@
             btnAjouter.UseVisualStyleBackColor = false;
             btnAjouter.Click += btnAjouter_Click;
             // 
+            // cbxPraticien
+            // 
+            cbxPraticien.FormattingEnabled = true;
+            cbxPraticien.Location = new Point(109, 66);
+            cbxPraticien.Name = "cbxPraticien";
+            cbxPraticien.Size = new Size(216, 23);
+            cbxPraticien.TabIndex = 2;
+            // 
+            // dtpDate
+            // 
+            dtpDate.CustomFormat = "dd/MM/yyyy HH:mm";
+            dtpDate.Format = DateTimePickerFormat.Custom;
+            dtpDate.Location = new Point(109, 178);
+            dtpDate.Name = "dtpDate";
+            dtpDate.Size = new Size(216, 23);
+            dtpDate.TabIndex = 6;
+            // 
+            // lblNouveauRdv
+            // 
+            lblNouveauRdv.AutoSize = true;
+            lblNouveauRdv.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            lblNouveauRdv.Location = new Point(24, 15);
+            lblNouveauRdv.Name = "lblNouveauRdv";
+            lblNouveauRdv.Size = new Size(160, 20);
+            lblNouveauRdv.TabIndex = 0;
+            lblNouveauRdv.Text = "Nouveau rendez vous";
+            // 
+            // lblDateHeure
+            // 
+            lblDateHeure.AutoSize = true;
+            lblDateHeure.Location = new Point(26, 184);
+            lblDateHeure.Name = "lblDateHeure";
+            lblDateHeure.Size = new Size(77, 15);
+            lblDateHeure.TabIndex = 5;
+            lblDateHeure.Text = "Date et heure";
+            // 
+            // lblPraticien
+            // 
+            lblPraticien.AutoSize = true;
+            lblPraticien.Location = new Point(24, 66);
+            lblPraticien.Name = "lblPraticien";
+            lblPraticien.Size = new Size(53, 15);
+            lblPraticien.TabIndex = 1;
+            lblPraticien.Text = "Praticien";
+            // 
+            // cbxMotif
+            // 
+            cbxMotif.FormattingEnabled = true;
+            cbxMotif.Location = new Point(109, 121);
+            cbxMotif.Name = "cbxMotif";
+            cbxMotif.Size = new Size(216, 23);
+            cbxMotif.TabIndex = 4;
+            // 
+            // lblMotif
+            // 
+            lblMotif.AutoSize = true;
+            lblMotif.Location = new Point(24, 121);
+            lblMotif.Name = "lblMotif";
+            lblMotif.Size = new Size(36, 15);
+            lblMotif.TabIndex = 3;
+            lblMotif.Text = "Motif";
+            // 
             // panelDroit
             // 
             panelDroit.Controls.Add(panel2);
             panelDroit.Dock = DockStyle.Right;
-            panelDroit.Location = new Point(585, 73);
+            panelDroit.Location = new Point(534, 83);
             panelDroit.Name = "panelDroit";
-            panelDroit.Size = new Size(430, 322);
+            panelDroit.Size = new Size(481, 312);
             panelDroit.TabIndex = 13;
             // 
             // panelGauche
@@ -156,11 +156,20 @@
             panelGauche.Controls.Add(label1);
             panelGauche.Controls.Add(dgvVisites);
             panelGauche.Dock = DockStyle.Fill;
-            panelGauche.Location = new Point(0, 73);
+            panelGauche.Location = new Point(0, 83);
             panelGauche.Name = "panelGauche";
             panelGauche.Padding = new Padding(10);
-            panelGauche.Size = new Size(585, 322);
+            panelGauche.Size = new Size(534, 312);
             panelGauche.TabIndex = 14;
+            // 
+            // label1
+            // 
+            label1.Dock = DockStyle.Top;
+            label1.Location = new Point(10, 10);
+            label1.Name = "label1";
+            label1.Size = new Size(514, 15);
+            label1.TabIndex = 1;
+            label1.Text = "Liste des rendez-vous déjà enregistrés";
             // 
             // dgvVisites
             // 
@@ -168,18 +177,8 @@
             dgvVisites.Dock = DockStyle.Fill;
             dgvVisites.Location = new Point(10, 10);
             dgvVisites.Name = "dgvVisites";
-            dgvVisites.Size = new Size(565, 302);
+            dgvVisites.Size = new Size(514, 292);
             dgvVisites.TabIndex = 0;
-            // 
-            // label1
-            // 
-            label1.Dock = DockStyle.Top;
-            label1.Location = new Point(10, 10);
-            label1.Name = "label1";
-            label1.Size = new Size(565, 15);
-            label1.TabIndex = 1;
-            label1.Text = "Liste des rendez-vous déjà enregistrés";
-            
             // 
             // FrmVisiteAjout
             // 
