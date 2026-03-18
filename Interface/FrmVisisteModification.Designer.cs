@@ -77,7 +77,7 @@
             // btnAjouter
             // 
             btnAjouter.BackColor = Color.Red;
-            btnAjouter.Location = new Point(95, 226);
+            btnAjouter.Location = new Point(58, 226);
             btnAjouter.Name = "btnAjouter";
             btnAjouter.Size = new Size(150, 23);
             btnAjouter.TabIndex = 6;
@@ -87,7 +87,7 @@
             // 
             // dateTimePicker1
             // 
-            dateTimePicker1.Location = new Point(45, 183);
+            dateTimePicker1.Location = new Point(58, 172);
             dateTimePicker1.Name = "dateTimePicker1";
             dateTimePicker1.Size = new Size(200, 23);
             dateTimePicker1.TabIndex = 5;
@@ -96,7 +96,7 @@
             // 
             lblNom.AutoSize = true;
             lblNom.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblNom.Location = new Point(58, 61);
+            lblNom.Location = new Point(58, 47);
             lblNom.Name = "lblNom";
             lblNom.Size = new Size(102, 15);
             lblNom.TabIndex = 4;
@@ -105,7 +105,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(58, 155);
+            label4.Location = new Point(58, 154);
             label4.Name = "label4";
             label4.Size = new Size(71, 15);
             label4.TabIndex = 3;
@@ -115,7 +115,7 @@
             // 
             lblDate.AutoSize = true;
             lblDate.Font = new Font("Segoe UI Historic", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblDate.Location = new Point(45, 130);
+            lblDate.Location = new Point(58, 102);
             lblDate.Name = "lblDate";
             lblDate.Size = new Size(190, 15);
             lblDate.TabIndex = 2;
@@ -164,9 +164,9 @@
             labeltitre.Dock = DockStyle.Top;
             labeltitre.Location = new Point(0, 0);
             labeltitre.Name = "labeltitre";
-            labeltitre.Size = new Size(75, 15);
+            labeltitre.Size = new Size(325, 15);
             labeltitre.TabIndex = 0;
-            labeltitre.Text = "Selectionner ";
+            labeltitre.Text = "Selectionner la visite afin de modifiez la date du rendez-vous";
             // 
             // FrmVisisteModification
             // 

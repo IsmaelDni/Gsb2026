@@ -23,7 +23,7 @@ namespace Interface
 
         private void FrmVisisteModification_Load(object sender, EventArgs e)
         {
-            
+
             parametrerComposant();
             remplirDgv();
         }
@@ -71,6 +71,7 @@ namespace Interface
         {
             // Afficher les détails de la visite sélectionnée
             lblNom.Text = v.LePraticien.NomPrenom;
+            lblDate.Text = v.DateEtHeure.ToLongDateString();
             dateTimePicker1.Value = v.DateEtHeure;
         }
 
@@ -229,7 +230,7 @@ namespace Interface
 
             // hauteur
             dgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            dgv.ColumnHeadersHeight = 40;
+            dgv.ColumnHeadersHeight = 35;
 
             #endregion
 
@@ -250,15 +251,18 @@ namespace Interface
 
             #endregion
 
+
+
             #region paramètrage au niveau des cellules
 
-            // style de bordure
-            dgv.CellBorderStyle = DataGridViewCellBorderStyle.None;
+            // style de bordure - Ajouter des bordures pour voir les lignes ET colonnes
+            dgv.CellBorderStyle = DataGridViewCellBorderStyle.Single;
 
             // couleur de fond
             dgv.RowsDefaultCellStyle.BackColor = Color.White;
 
             #endregion
+
 
             #region paramètrage au niveau de la zone sélectionnée
 
@@ -272,7 +276,8 @@ namespace Interface
 
             #region paramètrage des colonnes
 
-            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            // NE PAS appliquer AutoSizeColumnsMode ici, on va le faire colonne par colonne
+            // dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
             DataGridViewColumn col;
 
@@ -285,10 +290,9 @@ namespace Interface
 
             // Colonne 1 : Image pour supprimer la visite
             DataGridViewImageColumn colImage = new DataGridViewImageColumn();
-            colImage.Name = "Supprimer";
-            colImage.HeaderText = "Action";
-            colImage.Image = Resources.supprimer; // Assurez-vous que l'image 'delete' existe dans Resources
+            colImage.Image = Resources.supprimer;
             colImage.Width = 50;
+            colImage.AutoSizeMode = DataGridViewAutoSizeColumnMode.None; // Pas d'auto-sizing
             colImage.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             colImage.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgv.Columns.Add(colImage);
@@ -297,7 +301,7 @@ namespace Interface
             col = new DataGridViewTextBoxColumn();
             col.Name = "Date";
             col.HeaderText = "Programmée le";
-            col.Width = 200;
+            col.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill; // Remplir l'espace
             col.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dgv.Columns.Add(col);
 
@@ -306,6 +310,7 @@ namespace Interface
             col.Name = "Heure";
             col.HeaderText = "à";
             col.Width = 50;
+            col.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
             col.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             col.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgv.Columns.Add(col);
@@ -314,7 +319,7 @@ namespace Interface
             col = new DataGridViewTextBoxColumn();
             col.Name = "Lieu";
             col.HeaderText = "sur";
-            col.Width = 200;
+            col.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             col.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dgv.Columns.Add(col);
 
@@ -322,7 +327,7 @@ namespace Interface
             col = new DataGridViewTextBoxColumn();
             col.Name = "Praticien";
             col.HeaderText = "chez";
-            col.Width = 250;
+            col.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             col.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dgv.Columns.Add(col);
 
@@ -363,5 +368,7 @@ namespace Interface
             modification();
 
         }
+
+      
     }
 }
