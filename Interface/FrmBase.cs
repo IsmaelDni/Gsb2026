@@ -12,6 +12,7 @@ namespace Interface
         protected FrmBase()
         {
             InitializeComponent();
+            
         }
 
         // contructeur pour les formulaires secondaires, qui nécessite une session en paramètre (injection de dépendance)
@@ -55,12 +56,12 @@ namespace Interface
 
         private void imprimerRendezvous_Click(object sender, EventArgs e)
         {
-            // ouvrirFormulaire(new FrmVisiteImpression(session));
+            ouvrirFormulaire(new FrmVistiteImpression(session));
         }
 
         private void enregistrerBilan_Click(object sender, EventArgs e)
         {
-            // ouvrirFormulaire(new FrmVisiteBilan(session));
+            ouvrirFormulaire(new FrmVisiteBilan(session));
         }
 
         private void consulterVisite_Click(object sender, EventArgs e)

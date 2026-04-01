@@ -422,6 +422,7 @@ namespace Donnee
         static public void enregistrerBilan(Visite uneVisite)
         {
 
+         
 
         }
 
