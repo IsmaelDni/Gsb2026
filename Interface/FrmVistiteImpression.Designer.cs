@@ -41,6 +41,8 @@
             printRendezVous = new System.Drawing.Printing.PrintDocument();
             choixImprimante = new PrintDialog();
             aperçuRendezVous = new PrintPreviewDialog();
+            label3 = new Label();
+            label4 = new Label();
             panelCentral.SuspendLayout();
             panelSaisie.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
@@ -63,6 +65,8 @@
             // 
             // panelSaisie
             // 
+            panelSaisie.Controls.Add(label4);
+            panelSaisie.Controls.Add(label3);
             panelSaisie.Controls.Add(label1);
             panelSaisie.Controls.Add(dptFin);
             panelSaisie.Controls.Add(dptDebut);
@@ -149,6 +153,24 @@
             aperçuRendezVous.Name = "printPreviewDialog1";
             aperçuRendezVous.Visible = false;
             // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(71, 46);
+            label3.Name = "label3";
+            label3.Size = new Size(22, 15);
+            label3.TabIndex = 5;
+            label3.Text = "Du";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(74, 102);
+            label4.Name = "label4";
+            label4.Size = new Size(22, 15);
+            label4.TabIndex = 6;
+            label4.Text = "Au";
+            // 
             // FrmVistiteImpression
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -189,5 +211,7 @@
         private System.Drawing.Printing.PrintDocument printRendezVous;
         private PrintDialog choixImprimante;
         private PrintPreviewDialog aperçuRendezVous;
+        private Label label4;
+        private Label label3;
     }
 }

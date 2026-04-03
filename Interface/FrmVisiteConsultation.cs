@@ -95,19 +95,26 @@ namespace Interface
             dgv.RowsDefaultCellStyle.SelectionBackColor = Color.White;
             dgv.RowsDefaultCellStyle.SelectionForeColor = Color.Black;
 
-            // Ensure columns have explicit widths and alignment so Quantité is shown
-            foreach (DataGridViewColumn col in dgv.Columns)
-            {
-                col.SortMode = DataGridViewColumnSortMode.NotSortable;
-            }
+            // Recreate columns to ensure known names, widths and alignment so Nom et Quantité sont visibles
+            dgv.Columns.Clear();
+            var colNom = new DataGridViewTextBoxColumn();
+            colNom.Name = "Nom";
+            colNom.HeaderText = "Nom";
+            colNom.Width = 200;
+            colNom.ReadOnly = true;
+            dgv.Columns.Add(colNom);
 
-            // set specific widths (designer sets names)
-            if (dgv.Columns.Count >= 2)
-            {
-                dgv.Columns[0].Width = 200; // Nom
-                dgv.Columns[1].Width = 100; // Quantité
-                dgv.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            }
+            var colQuantite = new DataGridViewTextBoxColumn();
+            colQuantite.Name = "Quantite";
+            colQuantite.HeaderText = "Quantité";
+            colQuantite.Width = 100;
+            colQuantite.ReadOnly = true;
+            colQuantite.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgv.Columns.Add(colQuantite);
+
+            // disable sorting on the columns we just added
+            foreach (DataGridViewColumn col in dgv.Columns)
+                col.SortMode = DataGridViewColumnSortMode.NotSortable;
 
             // disable autosize so widths are respected
             dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
@@ -249,7 +256,8 @@ namespace Interface
             lblRue.Text = v.LePraticien.Rue + " " + v.LePraticien.CodePostal + " " + v.LePraticien.Ville;
             lblTelephone.Text = v.LePraticien.Telephone;
             lblEmail.Text = v.LePraticien.Email;
-            lblType.Text = v.LePraticien.TypePraticien is null ? string.Empty : v.LePraticien.Type.Libelle;
+            // Type is stored in the "Type" property of Praticien
+            lblType.Text = v.LePraticien.Type is null ? string.Empty : v.LePraticien.Type.Libelle;
             lblSpecialite.Text = v.LePraticien.Specialite is null ? string.Empty : v.LePraticien.Specialite.Libelle;
 
             // motif / bilan

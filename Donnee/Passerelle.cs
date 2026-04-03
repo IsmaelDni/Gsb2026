@@ -421,9 +421,54 @@ namespace Donnee
         /// <param name="uneVisite">Visite à enregistrer</param>
         static public void enregistrerBilan(Visite uneVisite)
         {
+            // Met à jour la table visite (bilan, premierMedicament, secondMedicament)
+            // et met à jour les échantillons associés (table medicamentDistribue)
+            // Toutes les opérations sont faites dans une transaction pour garantir
+            // l'unicité/atomicité de l'enregistrement.
 
-         
+            string sqlUpdateVisite = "UPDATE visite SET bilan = @bilan, premierMedicament = @premier, secondMedicament = @second WHERE id = @id;";
+            string sqlDeleteEchantillons = "DELETE FROM medicamentDistribue WHERE idVisite = @idVisite;";
+            string sqlInsertEchantillon = "INSERT INTO medicamentDistribue (idVisite, idMedicament, quantite) VALUES (@idVisite, @idMedicament, @quantite);";
 
+            using MySqlConnection cnx = ouvrirConnexion();
+            using MySqlCommand cmd = cnx.CreateCommand();
+            MySqlTransaction uneTransaction = cnx.BeginTransaction();
+            cmd.Transaction = uneTransaction;
+            try
+            {
+                // update visite
+                cmd.CommandText = sqlUpdateVisite;
+                cmd.Parameters.Clear();
+                cmd.Parameters.AddWithValue("@bilan", (object?)uneVisite.Bilan ?? DBNull.Value);
+                cmd.Parameters.AddWithValue("@premier", (object?)uneVisite.PremierMedicament?.Id ?? DBNull.Value);
+                cmd.Parameters.AddWithValue("@second", (object?)uneVisite.SecondMedicament?.Id ?? DBNull.Value);
+                cmd.Parameters.AddWithValue("@id", uneVisite.Id);
+                cmd.ExecuteNonQuery();
+
+                // supprimer les échantillons existants pour cette visite
+                cmd.CommandText = sqlDeleteEchantillons;
+                cmd.Parameters.Clear();
+                cmd.Parameters.AddWithValue("@idVisite", uneVisite.Id);
+                cmd.ExecuteNonQuery();
+
+                // insérer les échantillons contenus dans l'objet visite
+                cmd.CommandText = sqlInsertEchantillon;
+                foreach (var kv in uneVisite)
+                {
+                    cmd.Parameters.Clear();
+                    cmd.Parameters.AddWithValue("@idVisite", uneVisite.Id);
+                    cmd.Parameters.AddWithValue("@idMedicament", kv.Key.Id);
+                    cmd.Parameters.AddWithValue("@quantite", kv.Value);
+                    cmd.ExecuteNonQuery();
+                }
+
+                uneTransaction.Commit();
+            }
+            catch
+            {
+                try { uneTransaction.Rollback(); } catch { }
+                throw;
+            }
         }
 
         /// <summary>
