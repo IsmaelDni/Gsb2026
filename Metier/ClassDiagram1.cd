@@ -28,14 +28,12 @@
   <Class Name="Metier.Praticien">
     <Position X="8" Y="4.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>IAACAAQAACAAEEQAAAgAAAAAECAAIAAAAaAAAQAAAQI=</HashCode>
+      <HashCode>IAACAAQAACAAEEQAAAgAAAAAECAAAAAAAaAAAQAAAAI=</HashCode>
       <FileName>Praticien.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="TypePraticien" />
-      <Property Name="Specialite1" />
-      <Property Name="Visite" />
-    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Field Name="lesVisites" />
+    </ShowAsCollectionAssociation>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Metier.Session">

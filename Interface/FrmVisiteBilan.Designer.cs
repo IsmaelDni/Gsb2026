@@ -42,7 +42,7 @@
             comboBoxPremierMedicament = new ComboBox();
             lblPremierMedicament = new Label();
             label5 = new Label();
-            button1 = new Button();
+            AjoutEchan = new Button();
             label6 = new Label();
             numericUpDown1 = new NumericUpDown();
             comboBox1 = new ComboBox();
@@ -90,7 +90,7 @@
             panel4.Controls.Add(comboBoxPremierMedicament);
             panel4.Controls.Add(lblPremierMedicament);
             panel4.Controls.Add(label5);
-            panel4.Controls.Add(button1);
+            panel4.Controls.Add(AjoutEchan);
             panel4.Controls.Add(label6);
             panel4.Controls.Add(numericUpDown1);
             panel4.Controls.Add(comboBox1);
@@ -199,14 +199,15 @@
             label5.TabIndex = 7;
             label5.Text = "Echantillons distribués";
             // 
-            // button1
+            // AjoutEchan
             // 
-            button1.Location = new Point(640, 58);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 23);
-            button1.TabIndex = 12;
-            button1.Text = "Ajouter";
-            button1.UseVisualStyleBackColor = true;
+            AjoutEchan.Location = new Point(640, 58);
+            AjoutEchan.Name = "AjoutEchan";
+            AjoutEchan.Size = new Size(75, 23);
+            AjoutEchan.TabIndex = 12;
+            AjoutEchan.Text = "Ajouter";
+            AjoutEchan.UseVisualStyleBackColor = true;
+            AjoutEchan.Click += AjoutEchan_Click;
             // 
             // label6
             // 
@@ -370,7 +371,7 @@
         private Label label3;
         private Label label2;
         private Label label7;
-        private Button button1;
+        private Button AjoutEchan;
         private NumericUpDown numericUpDown1;
         private ComboBox comboBox1;
         private Label label6;

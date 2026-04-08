@@ -426,12 +426,13 @@ namespace Donnee
             // Toutes les opérations sont faites dans une transaction pour garantir
             // l'unicité/atomicité de l'enregistrement.
 
-            string sqlUpdateVisite = "UPDATE visite SET bilan = @bilan, premierMedicament = @premier, secondMedicament = @second WHERE id = @id;";
-            string sqlDeleteEchantillons = "DELETE FROM medicamentDistribue WHERE idVisite = @idVisite;";
-            string sqlInsertEchantillon = "INSERT INTO medicamentDistribue (idVisite, idMedicament, quantite) VALUES (@idVisite, @idMedicament, @quantite);";
+            string sqlUpdateVisite = "enregistrerBilanVisite";
+           
+            string sqlInsertEchantillon = "ajouterEchantillon";
 
             using MySqlConnection cnx = ouvrirConnexion();
             using MySqlCommand cmd = cnx.CreateCommand();
+            cmd.CommandType = CommandType.StoredProcedure;
             MySqlTransaction uneTransaction = cnx.BeginTransaction();
             cmd.Transaction = uneTransaction;
             try
@@ -439,16 +440,11 @@ namespace Donnee
                 // update visite
                 cmd.CommandText = sqlUpdateVisite;
                 cmd.Parameters.Clear();
-                cmd.Parameters.AddWithValue("@bilan", (object?)uneVisite.Bilan ?? DBNull.Value);
-                cmd.Parameters.AddWithValue("@premier", (object?)uneVisite.PremierMedicament?.Id ?? DBNull.Value);
-                cmd.Parameters.AddWithValue("@second", (object?)uneVisite.SecondMedicament?.Id ?? DBNull.Value);
-                cmd.Parameters.AddWithValue("@id", uneVisite.Id);
-                cmd.ExecuteNonQuery();
-
-                // supprimer les échantillons existants pour cette visite
-                cmd.CommandText = sqlDeleteEchantillons;
-                cmd.Parameters.Clear();
-                cmd.Parameters.AddWithValue("@idVisite", uneVisite.Id);
+                // Use the exact parameter names declared in the stored procedure
+                cmd.Parameters.AddWithValue("@_bilan", (object?)uneVisite.Bilan ?? DBNull.Value);
+                cmd.Parameters.AddWithValue("@_premierMedicament", (object?)uneVisite.PremierMedicament?.Id ?? DBNull.Value);
+                cmd.Parameters.AddWithValue("@_secondMedicament", (object?)uneVisite.SecondMedicament?.Id ?? DBNull.Value);
+                cmd.Parameters.AddWithValue("@_idVisite", uneVisite.Id);
                 cmd.ExecuteNonQuery();
 
                 // insérer les échantillons contenus dans l'objet visite
@@ -489,6 +485,7 @@ namespace Donnee
             string sql = "ajouterPraticien";
             using MySqlConnection cnx = ouvrirConnexion();
             using MySqlCommand cmd = new MySqlCommand(sql, cnx);
+            cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@nom", nom);
             cmd.Parameters.AddWithValue("@prenom", prenom);
             cmd.Parameters.AddWithValue("@rue", rue);

@@ -82,7 +82,7 @@ namespace Interface
             numericUpDown1.Value = 1;
 
             // événements
-            button1.Click += button1_Click;
+            AjoutEchan.Click += AjoutEchan_Click;
             dataGridView1.CellClick += dataGridView1_CellClick;
             btnEnregistrer.Click += btnEnregistrer_Click;
         }
@@ -234,7 +234,7 @@ namespace Interface
             }
         }
 
-        private void button1_Click(object? sender, EventArgs e)
+        private void AjoutEchan_Click(object sender, EventArgs e)
         {
             if (mesVisites == null || mesVisites.Count == 0) return;
             var med = comboBox1.SelectedItem as Medicament;
@@ -243,6 +243,7 @@ namespace Interface
             Visite v = mesVisites[indexVisiteActuelle];
             v.ajouterEchantillon(med, quantite);
             afficherEchantillons();
+
         }
 
         private void dataGridView1_CellClick(object? sender, DataGridViewCellEventArgs e)
@@ -311,7 +312,8 @@ namespace Interface
 
         #endregion
 
-        
+
+       
     }
 
 }

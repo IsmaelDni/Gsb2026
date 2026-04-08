@@ -81,7 +81,7 @@ namespace Interface
 
         private void modifierPraticien_Click(object sender, EventArgs e)
         {
-            // ouvrirFormulaire(new FrmPraticienModification(session));
+             ouvrirFormulaire(new FrmPraticienModification(session));
         }
 
         #endregion
@@ -117,20 +117,42 @@ namespace Interface
             Text = "Laboratoire pharmaceutique Galaxy-Swiss Bourdin - Gestion des visites";
             this.Icon = Properties.Resources.iconeGSB;
             KeyPreview = true;
-            // Supprimer les marges d'images des ToolStripMenuItem pour un rendu plus épuré
-            supprimerImageMargin();
+
 
             if (!DesignMode)
             {
-                lblVisiteur.Text = session!.NomVisiteur;
+
+                // Supprimer les marges d'images des ToolStripMenuItem pour un rendu plus épuré
+                supprimerImageMargin();
+
+
+                // Taille minimale fixe
+                this.MinimumSize = new Size(1400, 1000);
+                this.MaximumSize = new Size(1400, 1000); // Empêche le redimensionnement
+                this.FormBorderStyle = FormBorderStyle.FixedSingle;
+                this.MaximizeBox = false;
+
+                // Centrer sur l'écran
+                Screen screen = Screen.FromControl(this);
+                this.StartPosition = FormStartPosition.Manual;
+                this.Location = new Point(
+                    screen.WorkingArea.Left + (screen.WorkingArea.Width - this.Width) / 2,
+                    screen.WorkingArea.Top + (screen.WorkingArea.Height - this.Height) / 2
+                );
+
+
+                lblVisiteur.Text = session.NomVisiteur;
 
                 // Activation / désactivation des menus selon la session
 
                 // Modification des rendez-vous uniquement si des visites futures existent.
+                modifierRendezVous.Enabled = session.MesVisites.Any(v => v.DateEtHeure >= DateTime.Now);
 
                 // Enregistrement des bilans uniquement si des visites passées sans bilan existent.
+                enregistrerBilan.Enabled = session.MesVisites.Any(v => v.DateEtHeure <= DateTime.Now && v.Bilan == null);
 
                 // Consultation des visites activée si au moins une visite est présente.
+                consulterVisite.Enabled = session.MesVisites.Count > 0;
             }
         }
 
