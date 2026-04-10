@@ -108,28 +108,20 @@ namespace Interface
                 txtVille.Text = p.Ville;
                 mtbTelephone.Text = p.Telephone;
                 txtEmail.Text = p.Email;
-
-                btnSupprimer.Visible = p.NbVisite == 0; // suppression possible uniquement si aucune visite associée
-
-                // sélectionner le Type et la Spécialité correspondants en utilisant les listes de session
+                btnSupprimer.Enabled = p.NbVisite == 0;
                 if (p.Type != null)
                 {
-                    var typeObj = session.LesTypesPraticien.Find(t => t.Id == p.Type.Id);
-                    cbxType.SelectedItem = typeObj;
+                    for (int i = 0; i < cbxType.Items.Count; i++)
+                    {
+                        if (((TypePraticien)cbxType.Items[i]).Id == p.Type.Id) { cbxType.SelectedIndex = i; break; }
+                    }
                 }
-                else
-                {
-                    cbxType.SelectedIndex = -1;
-                }
-
                 if (p.Specialite != null)
                 {
-                    var specObj = session.LesSpecialites.Find(s => s.Id == p.Specialite.Id);
-                    cbxSpecialite.SelectedItem = specObj;
-                }
-                else
-                {
-                    cbxSpecialite.SelectedItem = null;
+                    for (int i = 0; i < cbxSpecialite.Items.Count; i++)
+                    {
+                        if (cbxSpecialite.Items[i] is Specialite sp && sp.Id == p.Specialite.Id) { cbxSpecialite.SelectedIndex = i; break; }
+                    }
                 }
             }
         }
@@ -217,7 +209,7 @@ namespace Interface
                 lePraticien.Specialite = cbxSpecialite.SelectedIndex > 0 ? cbxSpecialite.SelectedItem as Specialite : null;
 
                 // Appeler la méthode de la Passerelle pour enregistrer en base
-                Passerelle.modifierPraticien(lePraticien);
+                Donnee.Passerelle.modifierPraticien(lePraticien);
 
                 // Forcer le rafraîchissement de l'affichage dans la ComboBox
                 int currentIndex = cbxPraticien.SelectedIndex;

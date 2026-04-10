@@ -204,6 +204,7 @@ namespace Interface
         private int getLargeur(DataGridView dgv)
         {
             int largeur = 0;
+
             foreach (DataGridViewColumn col in dgv.Columns)
             {
                 if (col.Visible)
@@ -211,13 +212,20 @@ namespace Interface
                     largeur += col.Width;
                 }
             }
+
             if (dgv.RowHeadersVisible)
             {
                 largeur += dgv.RowHeadersWidth;
             }
+
+            // Ajout scrollbar verticale si présente
+            if (dgv.Controls.OfType<VScrollBar>().FirstOrDefault()?.Visible == true)
+            {
+                largeur += SystemInformation.VerticalScrollBarWidth;
+            }
+
             return largeur + 2; // marge bordure
         }
-       
 
         private void remplirDgvVisites()
         {

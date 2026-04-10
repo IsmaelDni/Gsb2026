@@ -421,40 +421,41 @@ namespace Donnee
         /// <param name="uneVisite">Visite à enregistrer</param>
         static public void enregistrerBilan(Visite uneVisite)
         {
-            // Met à jour la table visite (bilan, premierMedicament, secondMedicament)
-            // et met à jour les échantillons associés (table medicamentDistribue)
-            // Toutes les opérations sont faites dans une transaction pour garantir
-            // l'unicité/atomicité de l'enregistrement.
-
             string sqlUpdateVisite = "enregistrerBilanVisite";
-           
             string sqlInsertEchantillon = "ajouterEchantillon";
 
             using MySqlConnection cnx = ouvrirConnexion();
             using MySqlCommand cmd = cnx.CreateCommand();
             cmd.CommandType = CommandType.StoredProcedure;
+
             MySqlTransaction uneTransaction = cnx.BeginTransaction();
             cmd.Transaction = uneTransaction;
+
             try
             {
-                // update visite
+                // 1. UPDATE DE LA VISITE
                 cmd.CommandText = sqlUpdateVisite;
                 cmd.Parameters.Clear();
-                // Use the exact parameter names declared in the stored procedure
-                cmd.Parameters.AddWithValue("@_bilan", (object?)uneVisite.Bilan ?? DBNull.Value);
-                cmd.Parameters.AddWithValue("@_premierMedicament", (object?)uneVisite.PremierMedicament?.Id ?? DBNull.Value);
-                cmd.Parameters.AddWithValue("@_secondMedicament", (object?)uneVisite.SecondMedicament?.Id ?? DBNull.Value);
-                cmd.Parameters.AddWithValue("@_idVisite", uneVisite.Id);
+
+                // On respecte l'ordre EXACT de la procédure stockée et les noms sans le "@"
+                cmd.Parameters.AddWithValue("_idVisite", uneVisite.Id);
+                cmd.Parameters.AddWithValue("_bilan", (object?)uneVisite.Bilan ?? DBNull.Value);
+                cmd.Parameters.AddWithValue("_premierMedicament", (object?)uneVisite.PremierMedicament?.Id ?? DBNull.Value);
+                cmd.Parameters.AddWithValue("_secondMedicament", (object?)uneVisite.SecondMedicament?.Id ?? DBNull.Value);
+
                 cmd.ExecuteNonQuery();
 
-                // insérer les échantillons contenus dans l'objet visite
+                // 2. INSERTION DES ECHANTILLONS
                 cmd.CommandText = sqlInsertEchantillon;
-                foreach (var kv in uneVisite)
+                foreach (var kv in uneVisite) // Assurez-vous que l'itération sur uneVisite renvoie bien les échantillons
                 {
                     cmd.Parameters.Clear();
-                    cmd.Parameters.AddWithValue("@idVisite", uneVisite.Id);
-                    cmd.Parameters.AddWithValue("@idMedicament", kv.Key.Id);
-                    cmd.Parameters.AddWithValue("@quantite", kv.Value);
+
+                    // Attention : vérifiez que votre procédure `ajouterEchantillon` utilise bien ces noms-là !
+                    cmd.Parameters.AddWithValue("idVisite", uneVisite.Id);
+                    cmd.Parameters.AddWithValue("idMedicament", kv.Key.Id);
+                    cmd.Parameters.AddWithValue("quantite", kv.Value);
+
                     cmd.ExecuteNonQuery();
                 }
 
@@ -463,7 +464,7 @@ namespace Donnee
             catch
             {
                 try { uneTransaction.Rollback(); } catch { }
-                throw;
+                throw; // On relance l'erreur pour que l'application soit au courant du plantage
             }
         }
 
@@ -500,12 +501,32 @@ namespace Donnee
         }
 
         /// <summary>
-        /// <summary>
         /// Modifie les informations d'un praticien en base de données.
         /// </summary>
         /// <param name="lePraticien">Objet Praticien contenant les nouvelles informations</param>
         static public void modifierPraticien(Praticien lePraticien)
         {
+            string sql = "modifierPraticien"; // nom de la procédure stockée
+            using MySqlConnection cnx = ouvrirConnexion();
+            using MySqlCommand cmd = new MySqlCommand(sql, cnx);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            // Les noms correspondent désormais au script SQL (_nom au lieu de @nom)
+            cmd.Parameters.AddWithValue("_id", lePraticien.Id);
+            cmd.Parameters.AddWithValue("_nom", lePraticien.Nom);
+            cmd.Parameters.AddWithValue("_prenom", lePraticien.Prenom);
+            cmd.Parameters.AddWithValue("_rue", lePraticien.Rue);
+            cmd.Parameters.AddWithValue("_codePostal", string.IsNullOrEmpty(lePraticien.CodePostal) ? (object)DBNull.Value : lePraticien.CodePostal);
+            cmd.Parameters.AddWithValue("_ville", string.IsNullOrEmpty(lePraticien.Ville) ? (object)DBNull.Value : lePraticien.Ville);
+
+            // L'ordre a été inversé ici pour correspondre à la déclaration SQL : _telephone d'abord, puis _email
+            cmd.Parameters.AddWithValue("_telephone", string.IsNullOrEmpty(lePraticien.Telephone) ? (object)DBNull.Value : lePraticien.Telephone);
+            cmd.Parameters.AddWithValue("_email", string.IsNullOrEmpty(lePraticien.Email) ? (object)DBNull.Value : lePraticien.Email);
+
+            cmd.Parameters.AddWithValue("_idType", lePraticien.Type == null ? (object)DBNull.Value : lePraticien.Type.Id);
+            cmd.Parameters.AddWithValue("_idSpecialite", lePraticien.Specialite == null ? (object)DBNull.Value : lePraticien.Specialite.Id);
+
+            cmd.ExecuteNonQuery();
         }
 
         /// <summary>
@@ -513,7 +534,14 @@ namespace Donnee
         /// </summary>
         /// <param name="id">ID du praticien à supprimer</param>
         static public void supprimerPraticien(int id)
+        
         {
+            string sql = "supprimerPraticien"; // nom de la procédure stockée
+            using MySqlConnection cnx = ouvrirConnexion();
+            using MySqlCommand cmd = new MySqlCommand(sql, cnx);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@id", id);
+            cmd.ExecuteNonQuery();
         }
 
       

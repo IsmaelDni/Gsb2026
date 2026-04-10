@@ -96,18 +96,15 @@ namespace Interface
             // Si le formulaire courant est le menu principal, on le masque
             // et on affiche le formulaire enfant. Lorsque l'enfant est fermé,
             // on ré-affiche le menu.
+
+            frm.Show();
             if (this is FrmMenu)
             {
                 this.Hide();
-                frm.FormClosed += (s, e) => this.Show();
-                frm.Show();
+               
             }
             else
             {
-                // Pour les autres formulaires, on ouvre le nouveau et on ferme
-                // le formulaire courant pour éviter d'avoir plusieurs écrans
-                // inutiles en mémoire.
-                frm.Show();
                 this.Close();
             }
         }
